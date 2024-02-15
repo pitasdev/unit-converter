@@ -1,0 +1,31 @@
+<section class="convertidor">
+    <h2 class="titulo">convert</h2>
+    <article class="selecConv">
+        <select [(ngModel)]="conversion" (change)="comprobarTipoConversion()" (change)="conversionDatos()">
+            <option value="km-miles">km to miles</option>
+            <option value="miles-km">miles to km</option>
+            <option value="feet-meters">feet to meters</option>
+            <option value="meters-feet">meters to feet</option>
+            <option value="centimeters-inches">centimeters to inches</option>
+            <option value="inches-centimeters">inches to centimeters</option>
+        </select>
+        <img src="../../../assets/change-icon.svg" (click)="alternarConversion()">
+    </article>
+    <article class="datos">
+        <div>
+            <input type="number" class="datosUsuario" [(ngModel)]="datos" (change)="conversionDatos()" (keyup)="conversionDatos()">
+        </div>
+        <p class="medidas">{{medidaInicial}}</p>
+    </article>
+    <img src="../../../assets/fav-icon.svg" class="imgFav" (click)="guardarFav()">
+    <article class="resultado">
+        <p class="datoFinal">{{resultado}}</p>
+        <p class="medidaFinal">{{medidaFinal}}</p>
+    </article>
+</section>
+<section class="fav">
+    <h3>saved</h3>
+    @for(fav of listaFav; track fav.id){
+        <app-fav [id]="fav.id" [valorInicial]="fav.medidaInicial" [valorFinal]="fav.medidaFinal" (borrarID)="eliminarFav($event)"></app-fav>
+    }
+</section>
